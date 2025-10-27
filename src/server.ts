@@ -8,6 +8,9 @@ import { failed } from "./shared/utils/request.res";
 
 const app = express();
 
+// Trust proxy serve para aceitar um proxy na frente (Vercel/NGINX/API gateway);
+app.set("trust proxy", 1);
+
 // Morgan server para mostrar logs das requests do server;
 app.use(morgan("tiny"));
 

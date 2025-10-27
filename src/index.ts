@@ -1,6 +1,6 @@
 
 
-import app from "./shared/http/server";
+import app from "./server";
 
 
 

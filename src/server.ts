@@ -2,9 +2,9 @@ import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
-import leadsRoutes from "../../modules/leads/leads.routes";
+import leadsRoutes from "./modules/leads/leads.routes";
 import { rateLimit } from "express-rate-limit";
-import { failed } from "../utils/request.res";
+import { failed } from "./shared/utils/request.res";
 
 const app = express();
 

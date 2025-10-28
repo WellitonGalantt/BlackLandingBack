@@ -18,13 +18,27 @@ app.use(express.json());
 
 // Cors serve para permitir acesso do nosso back end para front end epecificos;
 
-app.use(cors({
-  origin: [
-    "https://black-landing-front.vercel.app/",
-    "http://localhost:3333"
-  ],
-  methods: ["POST", "OPTIONS"],
-}));
+// CORS
+const ALLOW = [
+  "https://black-landing-front.vercel.app",
+  "http://localhost:3333",
+];
+
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      if (!origin || ALLOW.includes(origin)) return cb(null, true);
+      return cb(new Error("CORS not allowed"));
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: false,
+    maxAge: 600, // cache do preflight
+  })
+);
+
+// garante resposta a OPTIONS
+app.options("*", cors());
 
 //Helemt serve para proteger nossa aplicação de brechas comuns que existem de forma automatica;
 app.use(helmet());

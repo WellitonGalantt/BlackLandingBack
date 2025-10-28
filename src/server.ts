@@ -17,7 +17,14 @@ app.use(morgan("tiny"));
 app.use(express.json());
 
 // Cors serve para permitir acesso do nosso back end para front end epecificos;
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    "https://black-landing-front.vercel.app/",
+    "http://localhost:3333"
+  ],
+  methods: ["POST", "OPTIONS"],
+}));
 
 //Helemt serve para proteger nossa aplicação de brechas comuns que existem de forma automatica;
 app.use(helmet());
